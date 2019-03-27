@@ -32,6 +32,7 @@ class ArticleController extends AbstractController
      */
     public function show($slug)
     {
+        
         $comments = [
             'I ate a normal rock once. It did NOT taste like bacon!',
             'Woohoo! I\'m going on an all-asteroid diet!',
