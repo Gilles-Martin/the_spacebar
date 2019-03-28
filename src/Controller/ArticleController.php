@@ -36,7 +36,7 @@ class ArticleController extends AbstractController
     public function show($slug, MarkdownInterface $markdown, AdapterInterface $cache)
     {
 
- dump($markdown);die;
+
  
         $comments = [
             'I ate a normal rock once. It did NOT taste like bacon!',
