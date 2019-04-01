@@ -28,3 +28,7 @@ services:
     Symfony\Bundle\TwigBundle\Controller\ExceptionController:
         alias: twig.controller.exception
         public: true
+    # New custom services markdown
+    App\Service\MarkdownHelper:
+            arguments:
+                $logger: '@monolog.logger.markdown'
