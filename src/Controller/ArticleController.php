@@ -22,6 +22,16 @@ class ArticleController extends AbstractController
 {
 
     /**
+     * @var bool
+     */
+    private $isDebug;
+
+    public function __construct(bool $isDebug)
+    {
+        
+        $this->isDebug = $isDebug;
+    }
+    /**
      * @Route("/", name="app_homepage")
      */
     public function homepage()
@@ -35,8 +45,7 @@ class ArticleController extends AbstractController
     public function show($slug, MarkdownHelper $markdownHelper)
     {
 
-
- 
+       
         $comments = [
             'I ate a normal rock once. It did NOT taste like bacon!',
             'Woohoo! I\'m going on an all-asteroid diet!',
@@ -59,9 +68,9 @@ strip steak pork belly aliquip capicola officia. Labore deserunt esse chicken lo
 cow est ribeye adipisicing. Pig hamburger pork belly enim. Do porchetta minim capicola irure pancetta chuck
 fugiat.
 EOF;
-       
+
         $articleContent = $markdownHelper->parse($articleContent);
-        
+
         return $this->render('article/show.html.twig', [
                     'title' => ucwords(str_replace('-', ' ', $slug)),
                     'comments' => $comments,

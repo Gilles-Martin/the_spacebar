@@ -9,19 +9,29 @@ use Symfony\Component\Cache\Adapter\AdapterInterface;
 class MarkdownHelper
 {
 
+    /**
+     * @var bool
+     */
+    private $isDebug;
     private $cache;
     private $markdown;
     private $logger;
 
-    public function __construct(AdapterInterface $cache, MarkdownInterface $markdown, LoggerInterface $logger)
+    public function __construct(AdapterInterface $cache, MarkdownInterface $markdown, LoggerInterface $markdownLogger, bool $isDebug)
     {
         $this->cache = $cache;
         $this->markdown = $markdown;
-        $this->logger = $logger;
+        $this->logger = $markdownLogger;
+        $this->isDebug = $isDebug;
     }
 
     public function parse(string $source): string
     {
+        //dump($this->cache);die;
+        // skip caching entirely in debug
+        if ($this->isDebug) {
+            return $this->markdown->transform($source);
+        }
         if (stripos($source, 'bacon') !== false) {
             $this->logger->info('They are talking about bacon again!');
         }
