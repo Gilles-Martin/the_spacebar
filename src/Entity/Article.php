@@ -45,7 +45,7 @@ class Article
     /**
      * @ORM\Column(type="integer")
      */
-    private $heartCount;
+    private $heartCount = 0;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -138,6 +138,11 @@ class Article
         $this->imageFilename = $imageFilename;
 
         return $this;
+    }
+
+    public function getImagePath()
+    {
+        return 'images/'.$this->getImageFilename();
     }
 
 }
